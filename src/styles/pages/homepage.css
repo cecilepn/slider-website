@@ -1,0 +1,23 @@
+.imageHero {
+  height: 600px;
+}
+
+.configurator-container {
+  height: 100vh;
+}
+
+.last-container {
+  padding-bottom: 60px;
+}
+
+@media (min-width: 900px) {
+  .container {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    gap: 120px;
+  }
+}

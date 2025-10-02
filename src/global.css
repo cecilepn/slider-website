@@ -1,0 +1,41 @@
+@import url('./styles/core/index.css');
+@import url('./styles/components/index.css');
+
+/* Variables globales */
+:root {
+  --color-primary: #2563eb;
+  --color-secondary: #9333ea;
+  --color-neutral: #6b7280;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --font-sans: 'Inter', Arial, sans-serif;
+  --font-serif: 'Merriweather', Georgia, serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container {
+  gap: 120px;
+}
+
+.container-top {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#gallery {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+#gallery > img {
+  max-width: 200px;
+  object-fit: contain;
+}

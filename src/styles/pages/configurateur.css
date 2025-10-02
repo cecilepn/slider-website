@@ -1,0 +1,196 @@
+/* Custom text overlay styles */
+.product-image-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.custom-text-overlay {
+  position: absolute;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+  cursor: move;
+  user-select: none;
+  z-index: 10;
+  white-space: nowrap;
+  pointer-events: all;
+  touch-action: none;
+}
+
+/* Text font selector */
+.text-font-selector,
+.text-size-selector {
+  padding: 0.5rem;
+  border: 1px solid #000;
+  font-size: 0.875rem;
+  min-width: 120px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.text-font-selector:focus,
+.text-size-selector:focus {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+/* Error message styles */
+.error-message {
+  padding: 8px 12px;
+  background-color: #fee;
+  border: 1px solid #fcc;
+  border-radius: 4px;
+  color: #c00;
+  font-size: 0.875rem;
+  margin-top: 8px;
+}
+
+/* Error state for inputs */
+.error {
+  border-color: #c00 !important;
+  background-color: #fef !important;
+}
+
+/* Color option buttons */
+.color-option {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-block;
+  border: 1px solid #ccc;
+}
+
+.color-black {
+  background: #000000;
+}
+
+.color-white {
+  background: #ffffff;
+  border: 1px solid #999;
+}
+
+.color-red {
+  background: #ff0000;
+}
+
+/* Hide radio buttons for color selection */
+input[name='textColor'] {
+  display: none;
+}
+
+/* Selected state for text color options (same visual as product color) */
+input[name='textColor']:checked + label {
+  outline: 1px solid #000;
+  outline-offset: 2px;
+}
+
+/* mobile first */
+.productImage {
+  height: 600px;
+}
+.productInfos {
+  padding-bottom: 30px;
+}
+
+legend {
+  padding-bottom: 10px;
+}
+.productReco {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.productRecoImg {
+  height: 400px;
+}
+
+.icons > img {
+  width: 25px;
+  height: 25px;
+}
+
+.recommendations {
+  padding-bottom: 40px;
+}
+
+/* desktop */
+@media (min-width: 1024px) {
+  .containerConfig {
+    display: flex;
+  }
+  .product-image-container {
+    max-width: 50%;
+  }
+  .sideRight {
+    padding: 0px 60px 60px 60px;
+  }
+
+  .recommendations {
+    flex-direction: row;
+    gap: 30px;
+    padding-bottom: 60px;
+  }
+
+  .productRecoImg {
+    width: 400px;
+    height: 300px;
+  }
+}
+.productOptions input[type='radio'] {
+  display: none;
+}
+
+/* Style des options Format */
+.productOptions fieldset:first-of-type label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border: 1px solid #000;
+  cursor: pointer;
+  background-color: #fff;
+  transition: all 0.2s ease-in-out;
+}
+
+.productOptions fieldset:first-of-type input[type='radio']:checked + label {
+  background-color: #000;
+  color: #fff;
+}
+
+/* Style des options Couleurs */
+.productOptions fieldset:nth-of-type(2) label {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+input[value='red'] + label {
+  background-color: red;
+}
+input[value='blue'] + label {
+  background-color: blue;
+}
+input[value='green'] + label {
+  background-color: green;
+}
+input[value='purple'] + label {
+  background-color: purple;
+}
+input[value='yellow'] + label {
+  background-color: gold;
+}
+
+.productOptions fieldset:nth-of-type(2) input[type='radio']:checked + label {
+  outline: 1px solid black;
+  outline-offset: 2px;
+}
+
+@media (min-width: 1024px) {
+  .optionsCustomInput {
+    flex-direction: row;
+    gap: 60px;
+  }
+}

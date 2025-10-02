@@ -1,0 +1,179 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+  margin: 0;
+  font-weight: normal;
+}
+
+h1,
+.h1 {
+  font-family: var(--font-sans);
+  font-size: 45px;
+  line-height: 55px;
+  font-weight: bold;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+@media (min-width: 1024px) {
+  h1,
+  .h1 {
+    font-size: 90px;
+    line-height: 95px;
+  }
+}
+
+h2,
+.h2 {
+  font-family: var(--font-sans);
+  font-size: 30px;
+  line-height: 40px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+@media (min-width: 1024px) {
+  h2,
+  .h2 {
+    font-size: 50px;
+    line-height: 55px;
+  }
+}
+
+h3,
+.h3 {
+  font-family: var(--font-sans);
+  font-size: 25px;
+  line-height: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+@media (min-width: 1024px) {
+  h3,
+  .h3 {
+    font-size: 26px;
+    line-height: 30px;
+  }
+}
+
+h4,
+.h4,
+.h4 * {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  line-height: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+@media (min-width: 1024px) {
+  h4,
+  .h4,
+  .h4 * {
+    font-size: 20px;
+    line-height: 20px;
+  }
+}
+
+button,
+.label,
+.link,
+.label * {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 15px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+  button,
+  .label,
+  .link,
+  .label * {
+    font-size: 14px;
+  }
+}
+
+.body-s {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@media (min-width: 1024px) {
+  .body-s {
+    font-size: 16px;
+  }
+}
+
+.body-m,
+.body-m * {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+@media (min-width: 1024px) {
+  .body-m,
+  .body-m * {
+    font-size: 20px;
+    line-height: 25px;
+  }
+}
+
+.italic {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 20px;
+  font-style: italic;
+}
+
+@media (min-width: 1024px) {
+  .italic {
+    font-size: 20px;
+    line-height: 25px;
+  }
+}
+
+/* text */
+
+.text-black {
+  color: var(--color-black);
+}
+.text-white {
+  color: var(--color-white);
+}
+.font-sans {
+  font-family: var(--font-sans);
+}
+.font-serif {
+  font-family: var(--font-serif);
+}
+.font-bold {
+  font-weight: bold;
+}
+.font-italic {
+  font-style: italic;
+}
+.text-center {
+  text-align: center;
+}
+.text-sm {
+  font-size: 0.875rem;
+}
+.text-base {
+  font-size: 1rem;
+}
+.text-lg {
+  font-size: 1.125rem;
+}
+.text-xl {
+  font-size: 1.25rem;
+}
