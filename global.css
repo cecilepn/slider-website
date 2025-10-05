@@ -17,25 +17,3 @@
   display: flex;
   justify-content: space-between;
 }
-
-.container {
-  gap: 120px;
-}
-
-.container-top {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-#gallery {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-#gallery > img {
-  max-width: 200px;
-  object-fit: contain;
-}

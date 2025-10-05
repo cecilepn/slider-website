@@ -3,7 +3,7 @@ const gallery = document.getElementById('gallery')
 
 async function loadDefaultImages() {
   const res = await fetch(
-    `https://api.unsplash.com/photos?per_page=12&client_id=${API_KEY}`
+    `https://api.unsplash.com/photos?per_page=16&client_id=${API_KEY}`
   )
   const data = await res.json()
   gallery.innerHTML = ''
