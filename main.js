@@ -1,11 +1,12 @@
 const API_KEY = 'hrttKJYqfwf1WSJeRJL-GyqEOph8-EvZNWUhdm-fhyU'
 const galleryTop = document.getElementById('gallery-top')
 const galleryBottom = document.getElementById('gallery-bottom')
+const changeThemeBtn = document.getElementById('changeThemeBtn')
 
-async function loadDefaultImages() {
+async function loadRandomImages() {
   try {
     const res = await fetch(
-      `https://api.unsplash.com/photos?per_page=24&client_id=${API_KEY}`
+      `https://api.unsplash.com/photos/random?count=24&client_id=${API_KEY}`
     )
     const data = await res.json()
     displayImagesInGalleries(data)
@@ -14,26 +15,12 @@ async function loadDefaultImages() {
   }
 }
 
-window.onload = loadDefaultImages
+window.onload = loadRandomImages
 
-async function searchImages(query) {
-  if (!query.trim()) {
-    loadDefaultImages()
-    return
-  }
-
-  try {
-    const res = await fetch(
-      `https://api.unsplash.com/search/photos?query=${encodeURIComponent(
-        query
-      )}&per_page=16&client_id=${API_KEY}`
-    )
-    const data = await res.json()
-
-    displayImagesInGalleries(data.results)
-  } catch (error) {
-    console.error('Erreur lors de la recherche :', error)
-  }
+if (changeThemeBtn) {
+  changeThemeBtn.addEventListener('click', () => {
+    loadRandomImages()
+  })
 }
 
 function displayImagesInGalleries(images) {
