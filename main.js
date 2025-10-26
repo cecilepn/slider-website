@@ -5,25 +5,10 @@ const galleryBottom = document.getElementById('gallery-bottom')
 async function loadDefaultImages() {
   try {
     const res = await fetch(
-      `https://api.unsplash.com/photos?per_page=16&client_id=${API_KEY}`
+      `https://api.unsplash.com/photos?per_page=24&client_id=${API_KEY}`
     )
     const data = await res.json()
-
-    galleryTop.innerHTML = ''
-    galleryBottom.innerHTML = ''
-
-    data.forEach(img => {
-      const imgElTop = document.createElement('img')
-      imgElTop.src = img.urls.small
-      imgElTop.alt = img.alt_description || 'Image'
-
-      const imgElBottom = document.createElement('img')
-      imgElBottom.src = img.urls.small
-      imgElBottom.alt = img.alt_description || 'Image'
-
-      galleryTop.appendChild(imgElTop)
-      galleryBottom.appendChild(imgElBottom)
-    })
+    displayImagesInGalleries(data)
   } catch (error) {
     console.error('Erreur lors du chargement des images :', error)
   }
@@ -45,22 +30,33 @@ async function searchImages(query) {
     )
     const data = await res.json()
 
-    galleryTop.innerHTML = ''
-    galleryBottom.innerHTML = ''
-
-    data.results.forEach(img => {
-      const imgElTop = document.createElement('img')
-      imgElTop.src = img.urls.small
-      imgElTop.alt = img.alt_description || 'Image'
-
-      const imgElBottom = document.createElement('img')
-      imgElBottom.src = img.urls.small
-      imgElBottom.alt = img.alt_description || 'Image'
-
-      galleryTop.appendChild(imgElTop)
-      galleryBottom.appendChild(imgElBottom)
-    })
+    displayImagesInGalleries(data.results)
   } catch (error) {
     console.error('Erreur lors de la recherche :', error)
   }
+}
+
+function displayImagesInGalleries(images) {
+  galleryTop.innerHTML = ''
+  galleryBottom.innerHTML = ''
+
+  const shuffled = [...images].sort(() => Math.random() - 0.5)
+
+  const half = Math.ceil(shuffled.length / 2)
+  const topImages = shuffled.slice(0, half)
+  const bottomImages = shuffled.slice(half)
+
+  topImages.forEach(img => {
+    const imgEl = document.createElement('img')
+    imgEl.src = img.urls.small
+    imgEl.alt = img.alt_description || 'Image'
+    galleryTop.appendChild(imgEl)
+  })
+
+  bottomImages.forEach(img => {
+    const imgEl = document.createElement('img')
+    imgEl.src = img.urls.small
+    imgEl.alt = img.alt_description || 'Image'
+    galleryBottom.appendChild(imgEl)
+  })
 }

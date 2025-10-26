@@ -13,28 +13,32 @@
       <section
         class="h-100vh w-100vw flex flex-col justify-between items-center overflow-hidden">
         <div id="gallery-top"></div>
-        <div class="flex flex-col gap-20 items-center">
-          <div class="flex flex-col gap-10">
-            <h1 class="h3">Find inspiration with one search</h1>
-            <p>Start by searching a theme!</p>
+        <div class="flex flex-col items-center gap-20">
+          <div class="flex flex-col gap-20 items-center">
+            <div class="flex flex-col gap-10">
+              <h1 class="h3">Find inspiration with one research</h1>
+            </div>
+            <div class="searchBar flex items-center relative w-full">
+              <label for="searchInput" class="w-full">
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search ..."
+                  class="w-full" />
+                <button
+                  class="absolute right-0 bottom-0"
+                  onclick="searchImages(document.getElementById('searchInput').value)">
+                  <img src="/assets/search.png" alt="" class="searchIcon" />
+                  <span class="sr-only">search button</span>
+                </button>
+              </label>
+            </div>
           </div>
-          <div class="searchBar flex items-center relative w-full">
-            <label for="searchInput" class="w-full">
-              <input
-                type="text"
-                id="searchInput"
-                placeholder="Search ..."
-                class="w-full" />
-              <button
-                class="absolute right-0 bottom-0"
-                onclick="searchImages(document.getElementById('searchInput').value)">
-                <img src="/assets/search.png" alt="" class="searchIcon" />
-                <span class="sr-only">search button</span>
-              </button>
-            </label>
+          <div>
+            <a href="/pages/moodboard.html">create your own moodbard here</a>
           </div>
         </div>
-        <div id="gallery-bottom"></div>
+        <div class="gallery" id="gallery-bottom"></div>
       </section>
     </main>
     <script src="/main.js"></script>

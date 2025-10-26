@@ -3,7 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Moodboard</title>
+    <link rel="stylesheet" href="/global.css" />
+    <link rel="stylesheet" href="/styles/pages/moodboard.css" />
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
   </head>
-  <body></body>
+  <body>
+    <main>
+      <section class="p-30 flex flex-col gap-30">
+        <div class="flex flex-col gap-10">
+          <h1 class="h2">First, search for a theme</h1>
+          <div class="searchBar flex items-center relative w-full">
+            <label for="searchInput" class="w-full">
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="e.g. cozy coffee shop, nature, cyberpunk..."
+                class="w-full" />
+              <button class="absolute right-0 bottom-0" id="searchBtn">
+                <img src="/assets/search.png" alt="" class="searchIcon" />
+                <span class="sr-only">search button</span>
+              </button>
+            </label>
+          </div>
+          <p>Then, choose from the results your favorite ones!</p>
+        </div>
+        <div id="gallery" class="gallery"></div>
+      </section>
+    </main>
+    <script src="/moodboard.js"></script>
+  </body>
 </html>

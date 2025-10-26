@@ -1,23 +1,6 @@
-.searchIcon {
-  width: 20px;
-  height: auto;
-  padding-bottom: 10px;
-}
-
-#gallery-top,
-#gallery-bottom {
-  display: flex;
-}
-
 #gallery-top {
   align-items: flex-start;
 }
 #gallery-bottom {
   align-items: flex-end;
-}
-
-#gallery-top > img,
-#gallery-bottom > img {
-  max-width: 120px;
-  height: fit-content;
 }

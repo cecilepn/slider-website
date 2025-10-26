@@ -12,3 +12,41 @@
   --font-sans: 'Inter', Arial, sans-serif;
   --font-serif: 'Merriweather', Georgia, serif;
 }
+
+a,
+.link {
+  position: relative;
+  text-decoration: none;
+}
+
+a::after,
+.link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+a:hover::after,
+.link:hover::after {
+  width: 100%;
+}
+
+.searchIcon {
+  width: 20px;
+  height: auto;
+  padding-bottom: 10px;
+}
+
+.gallery {
+  display: flex;
+}
+
+.gallery img {
+  max-width: 120px;
+  height: fit-content;
+}
