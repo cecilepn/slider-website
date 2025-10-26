@@ -1,22 +1,23 @@
-.container {
-  gap: 120px;
+.searchIcon {
+  width: 20px;
+  height: auto;
+  padding-bottom: 10px;
 }
 
-.container-top {
+#gallery-top,
+#gallery-bottom {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
 }
 
-#gallery {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 30px;
+#gallery-top {
+  align-items: flex-start;
+}
+#gallery-bottom {
+  align-items: flex-end;
 }
 
-#gallery > img {
-  max-width: 200px;
-  object-fit: contain;
+#gallery-top > img,
+#gallery-bottom > img {
+  max-width: 120px;
+  height: fit-content;
 }

@@ -1,39 +1,42 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Gallery</title>
+    <title>Moodboard tool</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/global.css" />
     <link rel="stylesheet" href="/styles/pages/homepage.css" />
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
   </head>
   <body>
-    <header class="flex">
-      <nav>
-        <ul class="flex">
-          <li><a href="/">Logo</a></li>
-          <li><a href="/slider.html">Slider</a></li>
-        </ul>
-      </nav>
-      <div class="searchBar">
-        <label for="searchInput">
-          <input
-            type="text"
-            id="searchInput"
-            placeholder="Chercher une image..." />
-          <button
-            onclick="searchImages(document.getElementById('searchInput').value)">
-            Rechercher
-          </button>
-        </label>
-      </div>
-    </header>
-    <section class="container">
-      <div class="container-top">
-        <h1>Gallery</h1>
-      </div>
-      <div id="gallery" />
-    </section>
+    <main>
+      <section
+        class="h-100vh w-100vw flex flex-col justify-between items-center overflow-hidden">
+        <div id="gallery-top"></div>
+        <div class="flex flex-col gap-20 items-center">
+          <div class="flex flex-col gap-10">
+            <h1 class="h3">Find inspiration with one search</h1>
+            <p>Start by searching a theme!</p>
+          </div>
+          <div class="searchBar flex items-center relative w-full">
+            <label for="searchInput" class="w-full">
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="Search ..."
+                class="w-full" />
+              <button
+                class="absolute right-0 bottom-0"
+                onclick="searchImages(document.getElementById('searchInput').value)">
+                <img src="/assets/search.png" alt="" class="searchIcon" />
+                <span class="sr-only">search button</span>
+              </button>
+            </label>
+          </div>
+        </div>
+        <div id="gallery-bottom"></div>
+      </section>
+    </main>
     <script src="/main.js"></script>
   </body>
 </html>

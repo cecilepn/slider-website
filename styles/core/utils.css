@@ -133,6 +133,9 @@
 .gap-60 {
   gap: 60px;
 }
+.gap-120 {
+  gap: 120px;
+}
 
 /* Flex & Grid */
 .flex {
@@ -214,4 +217,43 @@
 }
 .object-fill {
   object-fit: fill;
+}
+
+/* position */
+
+.relative {
+  position: relative;
+}
+.fixed {
+  position: fixed;
+}
+.absolute {
+  position: absolute;
+}
+.inset-0 {
+  inset: 0;
+}
+.top-0 {
+  top: 0;
+}
+.bottom-0 {
+  bottom: 0;
+}
+.left-0 {
+  left: 0;
+}
+.right-0 {
+  right: 0;
+}
+
+/* overflow */
+
+.overflow-auto {
+  overflow: auto;
+}
+.overflow-scroll {
+  overflow: scroll;
+}
+.overflow-hidden {
+  overflow: hidden;
 }

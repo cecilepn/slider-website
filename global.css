@@ -12,8 +12,3 @@
   --font-sans: 'Inter', Arial, sans-serif;
   --font-serif: 'Merriweather', Georgia, serif;
 }
-
-.header {
-  display: flex;
-  justify-content: space-between;
-}

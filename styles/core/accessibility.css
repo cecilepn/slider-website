@@ -113,7 +113,7 @@ video:focus-visible {
 input,
 .input {
   padding: 10px;
-  border: black 1px solid;
+  border-bottom: black 1px solid;
 }
 
 /* Helpers pour états ARIA */
