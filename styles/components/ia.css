@@ -1,0 +1,70 @@
+.ia-section {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ia-chat {
+  flex-wrap: wrap;
+}
+
+.ia-chat input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.ia-chat button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.ia-chat button:hover {
+  background-color: #555;
+}
+
+.ia-response {
+  margin-top: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 8px;
+  color: #ddd;
+  font-style: italic;
+  white-space: pre-wrap;
+}
+
+.ai-description {
+  margin-top: 10px;
+  font-style: italic;
+  color: #ccc;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  min-height: 30px;
+  transition: opacity 0.3s ease;
+}
+
+.copy-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ddd;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 5px;
+  font-size: 0.85rem;
+}
+
+.copy-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  color: black;
+}

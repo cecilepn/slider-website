@@ -75,10 +75,17 @@ function renderSlider() {
   const wrapper = document.createElement('div')
   wrapper.classList.add('slider-wrapper')
 
-  const imgEl = document.createElement('img')
-  imgEl.classList.add('slider-image')
-  imgEl.src = moodboard[currentIndex]
-  wrapper.appendChild(imgEl)
+  const track = document.createElement('div')
+  track.classList.add('slider-track')
+
+  moodboard.forEach(url => {
+    const img = document.createElement('img')
+    img.src = url
+    img.classList.add('slider-image')
+    track.appendChild(img)
+  })
+
+  wrapper.appendChild(track)
 
   const prevBtn = document.createElement('button')
   prevBtn.classList.add('slider-btn', 'prev')
@@ -92,14 +99,23 @@ function renderSlider() {
   deleteBtn.classList.add('slider-delete')
   deleteBtn.textContent = 'X'
 
+  const counter = document.createElement('div')
+  counter.classList.add('slider-counter')
+  counter.textContent = `${currentIndex + 1} / ${moodboard.length}`
+
+  function updateSlide() {
+    track.style.transform = `translateX(-${currentIndex * 100}%)`
+    counter.textContent = `${currentIndex + 1} / ${moodboard.length}`
+  }
+
   prevBtn.addEventListener('click', () => {
     currentIndex = (currentIndex - 1 + moodboard.length) % moodboard.length
-    imgEl.src = moodboard[currentIndex]
+    updateSlide()
   })
 
   nextBtn.addEventListener('click', () => {
     currentIndex = (currentIndex + 1) % moodboard.length
-    imgEl.src = moodboard[currentIndex]
+    updateSlide()
   })
 
   deleteBtn.addEventListener('click', () => {
@@ -113,7 +129,7 @@ function renderSlider() {
       }
 
       currentIndex = Math.min(currentIndex, moodboard.length - 1)
-      imgEl.src = moodboard[currentIndex]
+      renderSlider()
     }
   })
 
@@ -121,4 +137,106 @@ function renderSlider() {
   slider.appendChild(prevBtn)
   slider.appendChild(nextBtn)
   slider.appendChild(deleteBtn)
+  slider.appendChild(counter)
+
+  updateSlide()
 }
+
+const iaInput = document.getElementById('iaInput')
+const iaBtn = document.getElementById('iaBtn')
+const analyzeBtn = document.getElementById('analyzeBtn')
+const iaResponse = document.getElementById('iaResponse')
+const aiDescription = document.getElementById('aiDescription')
+
+let lastQuery = ''
+let lastAIText = ''
+
+const originalSearchImages = searchImages
+searchImages = async function (query) {
+  lastQuery = query
+  await originalSearchImages(query)
+}
+
+iaBtn.addEventListener('click', async () => {
+  const userText = iaInput.value.trim()
+  if (!userText) return
+  iaResponse.textContent = '⏳ AI is thinking...'
+
+  try {
+    const result = await puter.ai.chat(
+      `You are a creative assistant specialized in moodboards.
+      The user describes their moodboard as: "${userText}".
+      Reformulate and enrich this description artistically in 2 sentences.
+      Use evocative, emotional and visual language.`,
+      { model: 'gpt-5-nano' }
+    )
+
+    lastAIText = result
+
+    iaResponse.innerHTML = `
+      <p><strong>💬 AI reformulation:</strong></p>
+      <p>${result}</p>
+      <button id="copyBtn" class="copy-btn">📋 Copy</button>
+    `
+
+    localStorage.setItem('aiDescription', result)
+    aiDescription.textContent = result
+
+    document.getElementById('copyBtn').addEventListener('click', () => {
+      navigator.clipboard.writeText(result)
+      const btn = document.getElementById('copyBtn')
+      btn.textContent = 'Copied!'
+      setTimeout(() => (btn.textContent = '📋 Copy'), 1500)
+    })
+  } catch (error) {
+    iaResponse.textContent = 'Error: ' + error.message
+  }
+})
+
+analyzeBtn.addEventListener('click', async () => {
+  iaResponse.textContent = '🧠 AI is thinking of related ideas...'
+
+  if (!lastQuery) {
+    iaResponse.textContent =
+      '💡 No theme detected yet. Please search for a theme first!'
+    return
+  }
+
+  try {
+    const result = await puter.ai.chat(
+      `The current moodboard theme is "${lastQuery}".
+      Suggest 3 related moodboard themes or ideas the user could explore next.
+      Respond as a short list with one creative line each.`,
+      { model: 'gpt-5-nano' }
+    )
+
+    const formatted = result
+      .split('\n')
+      .map(line => line.trim())
+      .filter(Boolean)
+      .map(line => `<li>${line}</li>`)
+      .join('')
+
+    iaResponse.innerHTML = `
+      <p><strong>🎨 Related ideas:</strong></p>
+      <ul>${formatted}</ul>
+      <button id="copyBtnIdeas" class="copy-btn">📋 Copy ideas</button>
+    `
+
+    document.getElementById('copyBtnIdeas').addEventListener('click', () => {
+      navigator.clipboard.writeText(result)
+      const btn = document.getElementById('copyBtnIdeas')
+      btn.textContent = 'Copied!'
+      setTimeout(() => (btn.textContent = '📋 Copy ideas'), 1500)
+    })
+  } catch (error) {
+    iaResponse.textContent = 'Error: ' + error.message
+  }
+})
+
+window.addEventListener('load', () => {
+  const savedDescription = localStorage.getItem('aiDescription')
+  if (savedDescription) {
+    aiDescription.textContent = savedDescription
+  }
+})
