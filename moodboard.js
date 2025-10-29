@@ -65,11 +65,6 @@ function renderSlider() {
   const moodboard = JSON.parse(localStorage.getItem('moodboard')) || []
   slider.innerHTML = ''
 
-  if (moodboard.length === 0) {
-    slider.innerHTML = '<p>Your moodboard is empty — add images!</p>'
-    return
-  }
-
   let currentIndex = 0
 
   const wrapper = document.createElement('div')
@@ -146,10 +141,8 @@ const iaInput = document.getElementById('iaInput')
 const iaBtn = document.getElementById('iaBtn')
 const analyzeBtn = document.getElementById('analyzeBtn')
 const iaResponse = document.getElementById('iaResponse')
-const aiDescription = document.getElementById('aiDescription')
 
 let lastQuery = ''
-let lastAIText = ''
 
 const originalSearchImages = searchImages
 searchImages = async function (query) {
@@ -160,83 +153,52 @@ searchImages = async function (query) {
 iaBtn.addEventListener('click', async () => {
   const userText = iaInput.value.trim()
   if (!userText) return
-  iaResponse.textContent = '⏳ AI is thinking...'
+  iaResponse.textContent = 'AI is thinking...'
 
   try {
-    const result = await puter.ai.chat(
+    const response = await puter.ai.chat(
       `You are a creative assistant specialized in moodboards.
       The user describes their moodboard as: "${userText}".
       Reformulate and enrich this description artistically in 2 sentences.
-      Use evocative, emotional and visual language.`,
-      { model: 'gpt-5-nano' }
+      Use evocative, emotional, and visual language.`
     )
 
-    lastAIText = result
+    const answer = response.message.content
 
     iaResponse.innerHTML = `
-      <p><strong>💬 AI reformulation:</strong></p>
-      <p>${result}</p>
-      <button id="copyBtn" class="copy-btn">📋 Copy</button>
+      <p><strong>AI reformulation:</strong></p>
+      <p>${answer}</p>
     `
-
-    localStorage.setItem('aiDescription', result)
-    aiDescription.textContent = result
-
-    document.getElementById('copyBtn').addEventListener('click', () => {
-      navigator.clipboard.writeText(result)
-      const btn = document.getElementById('copyBtn')
-      btn.textContent = 'Copied!'
-      setTimeout(() => (btn.textContent = '📋 Copy'), 1500)
-    })
   } catch (error) {
     iaResponse.textContent = 'Error: ' + error.message
+    console.error(error)
   }
 })
 
 analyzeBtn.addEventListener('click', async () => {
-  iaResponse.textContent = '🧠 AI is thinking of related ideas...'
+  iaResponse.textContent = 'AI is thinking of related ideas...'
 
   if (!lastQuery) {
     iaResponse.textContent =
-      '💡 No theme detected yet. Please search for a theme first!'
+      'No theme detected yet. Please search for a theme first!'
     return
   }
 
   try {
-    const result = await puter.ai.chat(
+    const response = await puter.ai.chat(
       `The current moodboard theme is "${lastQuery}".
       Suggest 3 related moodboard themes or ideas the user could explore next.
-      Respond as a short list with one creative line each.`,
-      { model: 'gpt-5-nano' }
+      Respond as a short list with one creative line each.`
     )
 
-    const formatted = result
-      .split('\n')
-      .map(line => line.trim())
-      .filter(Boolean)
-      .map(line => `<li>${line}</li>`)
-      .join('')
+    const answer = response.message.content
 
     iaResponse.innerHTML = `
-      <p><strong>🎨 Related ideas:</strong></p>
-      <ul>${formatted}</ul>
-      <button id="copyBtnIdeas" class="copy-btn">📋 Copy ideas</button>
+      <p><strong>Related ideas:</strong></p>
+      <p>${answer}</p>
     `
-
-    document.getElementById('copyBtnIdeas').addEventListener('click', () => {
-      navigator.clipboard.writeText(result)
-      const btn = document.getElementById('copyBtnIdeas')
-      btn.textContent = 'Copied!'
-      setTimeout(() => (btn.textContent = '📋 Copy ideas'), 1500)
-    })
   } catch (error) {
     iaResponse.textContent = 'Error: ' + error.message
-  }
-})
-
-window.addEventListener('load', () => {
-  const savedDescription = localStorage.getItem('aiDescription')
-  if (savedDescription) {
-    aiDescription.textContent = savedDescription
+    console.error(error)
   }
 })

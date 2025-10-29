@@ -13,7 +13,6 @@
   flex: 1;
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 8px;
   font-size: 1rem;
 }
 
@@ -22,7 +21,6 @@
   color: white;
   border: none;
   padding: 10px 15px;
-  border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s ease;
 }
@@ -35,8 +33,7 @@
   margin-top: 10px;
   background: rgba(0, 0, 0, 0.2);
   padding: 10px;
-  border-radius: 8px;
-  color: #ddd;
+  color: #000000;
   font-style: italic;
   white-space: pre-wrap;
 }
@@ -51,20 +48,4 @@
   text-align: center;
   min-height: 30px;
   transition: opacity 0.3s ease;
-}
-
-.copy-btn {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ddd;
-  padding: 5px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-top: 5px;
-  font-size: 0.85rem;
-}
-
-.copy-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
-  color: black;
 }
